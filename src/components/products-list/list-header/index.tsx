@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   avatarImage: {
     width: 40,
     height: 40,
-    backgroundColor: "pink",
+    backgroundColor: "yellow",
     fontSize: 28,
     textAlign: "center",
     borderRadius: 20,
