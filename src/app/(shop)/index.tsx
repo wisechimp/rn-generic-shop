@@ -1,5 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { PRODUCTS } from "../../data/products";
+import ProductListItem from "../../components/products-list/products-list-item";
+import ListHeader from "../../components/products-list/list-header";
 
 const Home = () => {
   return (
@@ -7,15 +9,11 @@ const Home = () => {
       <FlatList
         data={PRODUCTS}
         renderItem={({ item }) => {
-          return (
-            <View>
-              <Text>{item.title}</Text>
-            </View>
-          );
+          return <ProductListItem product={item} />;
         }}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        ListHeaderComponent={<Text>Products</Text>}
+        ListHeaderComponent={<ListHeader />}
         contentContainerStyle={styles.flatListContainer}
         columnWrapperStyle={styles.flatListColumn}
         style={{ paddingHorizontal: 10, paddingVertical: 5 }}
