@@ -10,9 +10,11 @@ import {
   View,
 } from "react-native";
 import { CATEGORIES } from "../../../data/categories";
+import { useCartStore } from "../../../store/cart-store";
 
 const ListHeader = () => {
-  const shopingCartContents = "1";
+  const { getItemCount } = useCartStore();
+  const shopingCartContents = getItemCount();
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerTop}>
