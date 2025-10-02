@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { PRODUCTS } from "../../data/products";
 import ProductListItem from "../../components/products-list/products-list-item";
 import ListHeader from "../../components/products-list/list-header";
