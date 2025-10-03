@@ -9,6 +9,7 @@ const CategoriesLayout = () => {
         name="[slug]"
         options={({ navigation }) => ({
           headerShown: true,
+          headerTitleAlign: "center",
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={24} color="black" />
