@@ -14,7 +14,7 @@ import { useCartStore } from "../../../store/cart-store";
 
 const ListHeader = () => {
   const { getItemCount } = useCartStore();
-  const shopingCartContents = getItemCount();
+  const shoppingCartContents = getItemCount();
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerTop}>
@@ -25,7 +25,7 @@ const ListHeader = () => {
           </View>
         </View>
         <View style={styles.headerRight}>
-          <Link href="/cart" style={styles.cartContainer}>
+          <Link href="/cart" asChild style={styles.cartContainer}>
             <Pressable>
               {({ pressed }) => (
                 <View>
@@ -33,10 +33,13 @@ const ListHeader = () => {
                     name="shopping-cart"
                     size={25}
                     color="gray"
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: 15,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                   <View style={styles.badgeContainer}>
-                    <Text style={styles.badgeText}>{shopingCartContents}</Text>
+                    <Text style={styles.badgeText}>{shoppingCartContents}</Text>
                   </View>
                 </View>
               )}
