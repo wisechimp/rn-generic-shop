@@ -1,8 +1,49 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useCartStore } from "../store/cart-store";
+import { StatusBar } from "expo-status-bar";
+import CartItem from "../components/cart-item";
 
 const Cart = () => {
+  const { items, removeItem, incrementItem, decrementItem, getTotalPrice } =
+    useCartStore();
+
+  const handleCheckout = () => {
+    Alert.alert("Proceeding to Checkout", `Total amount: $${getTotalPrice()}`);
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <StatusBar style={Platform.OS === "ios" ? "dark" : "auto"} />
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <CartItem
+            item={item}
+            onDecrement={decrementItem}
+            onIncrement={incrementItem}
+            onRemove={removeItem}
+          />
+        )}
+        contentContainerStyle={styles.cartList}
+      />
+      <View style={styles.footer}>
+        <Text style={styles.totalText}>Total: ${getTotalPrice()}</Text>
+        <TouchableOpacity
+          onPress={handleCheckout}
+          style={styles.checkoutButton}
+        >
+          <Text style={styles.checkoutButtonText}>Checkout</Text>
+        </TouchableOpacity>
+      </View>
       <Text>Cart</Text>
     </View>
   );
@@ -18,46 +59,6 @@ const styles = StyleSheet.create({
   },
   cartList: {
     paddingVertical: 16,
-  },
-  cartItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 16,
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: "#f9f9f9",
-  },
-  itemImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
-  },
-  itemDetails: {
-    flex: 1,
-    marginLeft: 16,
-  },
-  itemTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
-  itemPrice: {
-    fontSize: 16,
-    color: "#888",
-    marginBottom: 4,
-  },
-  itemQuantity: {
-    fontSize: 14,
-    color: "#666",
-  },
-  removeButton: {
-    padding: 8,
-    backgroundColor: "#ff5252",
-    borderRadius: 8,
-  },
-  removeButtonText: {
-    color: "#fff",
-    fontSize: 14,
   },
   footer: {
     borderTopWidth: 1,
@@ -79,23 +80,6 @@ const styles = StyleSheet.create({
   },
   checkoutButtonText: {
     color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  quantityContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  quantityButton: {
-    width: 30,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 15,
-    backgroundColor: "#ddd",
-    marginHorizontal: 5,
-  },
-  quantityButtonText: {
     fontSize: 18,
     fontWeight: "bold",
   },
