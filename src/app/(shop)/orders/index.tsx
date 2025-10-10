@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { ORDERS } from "../../../data/orders";
 import { Order, OrderStatus } from "../../../types/order";
-import { Link } from "expo-router";
+import { Link, Stack } from "expo-router";
 
 const statusDisplayedText: Record<OrderStatus, string> = {
   Pending: "Pending",
@@ -43,6 +43,7 @@ const renderedItem: ListRenderItem<Order> = ({ item }) => {
 const Orders = () => {
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: "Orders" }} />
       <FlatList
         data={ORDERS}
         keyExtractor={(item) => item.id.toString()}

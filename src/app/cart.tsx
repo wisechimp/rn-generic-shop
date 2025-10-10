@@ -44,7 +44,6 @@ const Cart = () => {
           <Text style={styles.checkoutButtonText}>Checkout</Text>
         </TouchableOpacity>
       </View>
-      <Text>Cart</Text>
     </View>
   );
 };
