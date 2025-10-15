@@ -1,9 +1,12 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import { PRODUCTS } from "../../data/products";
-import ProductListItem from "../../components/products-list/products-list-item";
-import ListHeader from "../../components/products-list/list-header";
+import ProductListItem from "../../components/products-list-item";
+import ListHeader from "../../components/header";
+import { useAuth } from "../../providers/auth-provider";
 
 const Home = () => {
+  const { user } = useAuth();
+  console.log(user);
   return (
     <View>
       <FlatList

@@ -9,12 +9,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { CATEGORIES } from "../../../data/categories";
-import { useCartStore } from "../../../store/cart-store";
+import { CATEGORIES } from "../../data/categories";
+import { useCartStore } from "../../store/cart-store";
+import { supabase } from "../../lib/supabase";
 
 const ListHeader = () => {
   const { getItemCount } = useCartStore();
   const shoppingCartContents = getItemCount();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerTop}>
@@ -45,14 +51,17 @@ const ListHeader = () => {
               )}
             </Pressable>
           </Link>
-          <TouchableOpacity style={styles.signOutButton}>
+          <TouchableOpacity
+            onPress={handleSignOut}
+            style={styles.signOutButton}
+          >
             <FontAwesome name="sign-out" size={25} color="red" />
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.heroContainer}>
         <Image
-          source={require("../../../../assets/images/hero.png")}
+          source={require("../../../assets/images/hero.png")}
           style={styles.heroImage}
         />
       </View>
